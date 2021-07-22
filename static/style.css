@@ -1,18 +1,22 @@
- section{
-  
-   text-align: center;
-   top: 100px;
- }
-
- .cellDiv{
-    width:50px;
-    height:40px;    
-    fill:palegreen;
+* {
+  box-sizing: border-box;
 }
 
-.cellLetter{
-  position:relative;
-  top:-35px;
+section {
+  text-align: center;
+  position: relative;
+  top: 10vh;
+}
+
+.cellDiv {
+  width: 55px;
+  height: 45px;
+  fill: palegreen;
+}
+
+.cellLetter {
+  position: relative;
+  top: -35px;
 }
 .cell {
   background-color: aqua;
@@ -34,30 +38,29 @@
 /* The animation code */
 @keyframes fadeGreen {
   from {
-      /*background-color: green;*/
-      fill:green
+    /*background-color: green;*/
+    fill: green;
   }
 
   to {
-      /*background-color: aqua;*/
-      fill:aqua
+    /*background-color: aqua;*/
+    fill: aqua;
   }
 }
 
 /* The element to apply the animation to */
 .good {
   animation-name: fadeGreen;
-  animation-duration: 2s;  
+  animation-duration: 2s;
 }
-
 
 @keyframes fadeRed {
   from {
-      fill: red;
+    fill: red;
   }
 
   to {
-      fill: aqua;
+    fill: aqua;
   }
 }
 
@@ -69,14 +72,22 @@
 
 .used {
   /*background-color: peru;*/
-  fill: peru ;
-
+  fill: peru;
 }
 
-.cellDiv:hover{
+.cellDiv:hover {
   /* filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%); */
-fill: lightblue;
-transform: scale(1.1);
-
+  fill: lightblue;
+  transform: scale(1.1);
 }
 
+svg {
+  transform: rotate(30deg);
+}
+
+.cellHolder {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

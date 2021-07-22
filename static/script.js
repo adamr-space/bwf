@@ -23,7 +23,7 @@ cells.forEach(c => { console.log("Hooked" + c.id ); c.addEventListener('click', 
 fillBoard(cellCount)
 
 async function getGames() {
-    let state = await submit('GET', `http://localhost:3000/api/state`)
+    let state = await submit('GET', `https://dashboard.heroku.com/apps/buzz-words-back/api/state`)
     
 
     let roomList = document.getElementById("roomList")
@@ -47,7 +47,7 @@ function changeRoom(roomId){
         //"id":"60d4974c0791a35c6c6970fd"
     }
     console.log(roomInfo)
-    submit('POST', `http://localhost:3000/api/room`, roomInfo)
+    submit('POST', `https://dashboard.heroku.com/apps/buzz-words-back/api/room`, roomInfo)
 
 
 }
@@ -60,7 +60,7 @@ async function signUp() {
     let user = document.getElementById('userName') 
     let password = document.getElementById('password') 
     let userinfo = {username: user.value, password: password.value} 
-    let result = await submit('POST', `http://localhost:3000/signup/`, userinfo)    
+    let result = await submit('POST', `https://dashboard.heroku.com/apps/buzz-words-back/signup/`, userinfo)    
     console.log(result)
 }
 
@@ -68,13 +68,13 @@ async function signIn() {
     let user = document.getElementById('si_userName') 
     let password = document.getElementById('si_password') 
     let userinfo = {username: user.value, password: password.value} 
-    let result = await submit('POST', `http://localhost:3000/login/`, userinfo)    
+    let result = await submit('POST', `https://dashboard.heroku.com/apps/buzz-words-back/login/`, userinfo)    
     console.log(result)
 }
 
 async function fillBoard(numLetters) {
 
-    let board = await submit('GET', `http://localhost:3000/api/rndletters/${numLetters}`)
+    let board = await submit('GET', `https://dashboard.heroku.com/apps/buzz-words-back/api/rndletters/${numLetters}`)
 
     for (let i = 0; i < board.length; i++) {
 
@@ -117,7 +117,7 @@ function clearCells() {
 }
 
 async function submitWord() {
-    let response = await submit('POST', 'http://localhost:3000/api/dict', { "letters": letters })
+    let response = await submit('POST', 'https://dashboard.heroku.com/apps/buzz-words-back/api/dict', { "letters": letters })
     console.log(response)
     const history = document.getElementById("historyHolder")
     let historyEntry = document.createElement("p")
@@ -155,7 +155,7 @@ async function submitWord() {
 
 async function submit(method, url, requestBodyObj) {
 
-    // const response = await fetch("http://localhost:3000/login", {
+    // const response = await fetch("https://dashboard.heroku.com/apps/buzz-words-back/login", {
     //     method: "POST",
     //     credentials: "same-origin",
     //     body: JSON.stringify({ username: body[0], password: body[1] }),
@@ -175,7 +175,7 @@ async function submit(method, url, requestBodyObj) {
     }
 
     //const response = await fetch(url, { method: method, body: payload, credentials: "same-origin",headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'} })
-    const response = await fetch(url, { method: method, body: payload, credentials: "same-origin",headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'} })
+    const response = await fetch(url, { method: method, body: payload, credentials: "include",headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'} })
 
     if (response.ok) {
         const promise = await response.json()
